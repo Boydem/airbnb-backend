@@ -22,7 +22,7 @@ async function getCollection(collectionName) {
 async function connect() {
     if (dbConn) return dbConn
     try {
-        const client = await MongoClient.connect(process.env.MY_MONGO_URI, {
+        const client = await MongoClient.connect(process.env.MY_MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
