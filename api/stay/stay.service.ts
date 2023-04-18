@@ -54,11 +54,12 @@ async function query(
         const totalStays = await collection.countDocuments(queryFilter)
         const totalPages = Math.ceil(totalStays / pageSize)
 
-        // Define the aggregation pipeline
-        const pipeline = [{ $match: queryFilter }, { $skip: pageSize * pageIdx }, { $limit: pageSize }]
-
-        // Execute the aggregation pipeline
-        const stays = await collection.aggregate(pipeline).toArray()
+        let stays = (await collection.find(queryFilter).toArray()) as IStay[]
+        console.log('stays.length:', stays.length)
+        const start = pageSize * pageIdx
+        const end = pageSize * pageIdx + pageSize
+        console.log('start,end:', start, end)
+        stays = stays.slice(start, end)
 
         const staysForPreview: IStayPreview[] = stays.map((stay: IStay) => ({
             _id: stay._id,
