@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/airbnb-front/static/css/main.fa217a22.css",
+    "main.js": "/airbnb-front/static/js/main.6574f21b.js",
+    "static/media/all.webp": "/airbnb-front/static/media/all.2a49ce1de0a165eaff60.webp",
+    "static/media/usa.webp": "/airbnb-front/static/media/usa.bf6a17c846334e3873a4.webp",
+    "static/media/france.webp": "/airbnb-front/static/media/france.b75cf05b38e6bae34c31.webp",
+    "static/media/middle-east.webp": "/airbnb-front/static/media/middle-east.66e5650f59846b5842fe.webp",
+    "static/media/italy.webp": "/airbnb-front/static/media/italy.b00d91b4b8afceaa4985.webp",
+    "static/media/south-america.webp": "/airbnb-front/static/media/south-america.3f32b3945318eb0dbede.webp",
+    "index.html": "/airbnb-front/index.html",
+    "main.fa217a22.css.map": "/airbnb-front/static/css/main.fa217a22.css.map",
+    "main.6574f21b.js.map": "/airbnb-front/static/js/main.6574f21b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa217a22.css",
+    "static/js/main.6574f21b.js"
+  ]
+}
