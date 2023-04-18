@@ -13,7 +13,7 @@ app.use(express.json())
 if (process.env.NODE_ENV === 'production') {
     // app.use(express.static(path.resolve(__dirname, 'public')))
     const corsOptions = {
-        origin: ['https://airbnb-frontend-y5qm.onrender.com/', 'https://airbnb-frontend-y5qm.onrender.com/'],
+        origin: ['https://airbnb-frontend-y5qm.onrender.com', 'https://airbnb-frontend-y5qm.onrender.com'],
         credentials: true,
     }
     app.use(cors(corsOptions))
