@@ -1,4 +1,4 @@
-const express = require('express')
+import express, { Request, Response } from 'express'
 const cors = require('cors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
@@ -31,7 +31,7 @@ app.use('/api/stay', stayRoutes)
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/stay/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
-app.get('/**', (req, res) => {
+app.get('/**', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
