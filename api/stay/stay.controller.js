@@ -1,9 +1,7 @@
-import { Request, Response } from 'express'
+const stayService = require('./stay.service.js')
+const logger = require('../../service/logger.service.js')
 
-const stayService = require('./stay.service.ts')
-const logger = require('../../service/logger.service')
-
-async function getFilters(req: Request, res: Response) {
+async function getFilters(req, res) {
     try {
         logger.debug('Getting Filters')
         const filters = await stayService.getFilters()
@@ -14,7 +12,7 @@ async function getFilters(req: Request, res: Response) {
     }
 }
 
-async function getStays(req: Request, res: Response) {
+async function getStays(req, res) {
     try {
         logger.debug('Getting Stays')
         console.log('req.query:', req.query)
@@ -26,7 +24,7 @@ async function getStays(req: Request, res: Response) {
         res.status(500).send({ err: 'Failed to get stays' })
     }
 }
-async function getStayById(req: Request, res: Response) {
+async function getStayById(req, res) {
     try {
         logger.debug('Getting Stays')
         console.log('req.params:', req.params)

@@ -1,18 +1,14 @@
-import { IFilterBy } from '../../models/filter'
-import { IReview } from '../../models/review'
-import { ISearchBy } from '../../models/search'
-import { IStay, IStayPreview } from '../../models/stay'
 const { ObjectId } = require('mongodb')
 
 const dbService = require('../../service/db.service')
 const logger = require('../../service/logger.service')
 
-interface filterOpts {
-    labels?: { [key: string]: string[] }
-}
-interface searchOpts {
-    region?: string
-}
+// interface filterOpts {
+//     labels?: { [key: string]: string[] }
+// }
+// interface searchOpts {
+//     region?: string
+// }
 
 async function getFilters() {
     const collection = await dbService.getCollection('filter')
@@ -20,7 +16,7 @@ async function getFilters() {
     return filters
 }
 
-async function get(stayId: string) {
+async function get(stayId) {
     const collection = await dbService.getCollection('stay')
     const objectId = new ObjectId(stayId)
     const stay = await collection.findOne({ _id: objectId })
@@ -28,16 +24,11 @@ async function get(stayId: string) {
     return stay
 }
 
-async function query(
-    filterBy = { labels: [] },
-    searchBy = { destination: '' },
-    pageIdx: number = 0,
-    pageSize: number = 20
-) {
+async function query(filterBy = { labels: [] }, searchBy = { destination: '' }, pageIdx = 0, pageSize = 20) {
     try {
         const collection = await dbService.getCollection('stay')
-        const filter: filterOpts = {}
-        const searchFilter: searchOpts = {}
+        const filter = {}
+        const searchFilter = {}
 
         if (filterBy.labels.length > 0) {
             filter.labels = { $in: filterBy.labels }
@@ -54,14 +45,14 @@ async function query(
         const totalStays = await collection.countDocuments(queryFilter)
         const totalPages = Math.ceil(totalStays / pageSize)
 
-        let stays = (await collection.find(queryFilter).toArray()) as IStay[]
+        let stays = await collection.find(queryFilter).toArray()
         console.log('stays.length:', stays.length)
         const start = pageSize * pageIdx
         const end = pageSize * pageIdx + pageSize
         console.log('start,end:', start, end)
         stays = stays.slice(start, end)
 
-        const staysForPreview: IStayPreview[] = stays.map((stay: IStay) => ({
+        const staysForPreview = stays.map(stay => ({
             _id: stay._id,
             name: stay.name,
             price: stay.price,

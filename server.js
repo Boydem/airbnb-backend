@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 // Routes Imports
-const stayRoutes = require('./api/stay/stay.routes')
+const stayRoutes = require('./api/stay/stay.routes.js')
 
 // Routes Calls
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
