@@ -1,3 +1,4 @@
+const { dbName, dbURL } = require('../config/config.js')
 const MongoClient = require('mongodb').MongoClient
 
 const logger = require('./logger.service')
@@ -22,11 +23,11 @@ async function getCollection(collectionName) {
 async function connect() {
     if (dbConn) return dbConn
     try {
-        const client = await MongoClient.connect(process.env.MY_MONGO_URL, {
+        const client = await MongoClient.connect(dbURL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-        const db = client.db(process.env.MY_MONGO_NAME)
+        const db = client.db(dbName)
         dbConn = db
         return db
     } catch (err) {
